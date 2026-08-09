@@ -1,8 +1,9 @@
 class QuizView:
     def show_menu(self):
         # Header
+        print("\n\n")
         print("="*40)
-        print("\t\t\t 🐟 동물도 맞출 수 있는 EASY 퀴즈 🐔")
+        print("   🐟 동물도 맞출 수 있는 EASY 퀴즈 🐔")
         print("="*40 + "\n")
         # 메뉴
         print("1. 퀴즈 풀기")

@@ -507,3 +507,203 @@ class QuizView:
 ```
 
 [quiz_view.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py) 파일에 작성 완료 후 알려주세요!
+
+### User Input
+
+@[/Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py] 완료
+
+*User accepted the command `>>> class QuizView:...     def show_menu(self):...         # Header...         print("="*40)...         print("\t\t\t 🐟 동물도 맞출 수 있는 EASY 퀴즈 🐔")...         print("="*40 + "\n")...         # 메뉴...         print("1. 퀴즈 풀기")...         print("2. 퀴즈 추가")...         print("3. 퀴즈 목록")...         print("4. 최고 점수 확인")...         print("5. 퀴즈 삭제")...         print("6. 종료\n")...         choice = input("선택: ").strip()...         return choice... `*
+
+*Viewed [quiz_view.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py) *
+
+*Edited relevant file*
+
+### Planner Response
+
+"🐟 동물도 맞출 수 있는 EASY 퀴즈 🐔" 라니, 센스 있는 제목이 정말 좋습니다! 메뉴 화면 구현도 아주 잘 되었습니다.
+
+이제 `QuizManager`(Model)와 `QuizView`(View)를 연결해 줄 핵심 사령탑인 **Controller**를 만들 차례입니다. 이 컨트롤러가 동작하면 드디어 게임을 실행해 볼 수 있습니다!
+
+---
+
+### 🚀 일곱 번째 미션: `QuizController` 메인 루프 만들기
+
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py) 파일을 열어주세요.
+
+**요구사항 가이드:**
+1. **임포트(Import)**: 맨 윗줄에 우리가 만든 모델과 뷰를 불러옵니다.
+   ```python
+   from quiz_model import QuizManager
+   from quiz_view import QuizView
+   ```
+2. **`QuizController` 클래스 생성 및 초기화 (`__init__`)**:
+   - `__init__(self)` 메서드 안에서 `QuizManager`와 `QuizView`의 인스턴스(객체)를 생성하여 속성으로 저장합니다. (예: `self.manager = QuizManager()`)
+   - 프로그램이 시작될 때 데이터를 불러와야 하므로, `__init__`의 마지막 줄에 `self.manager.load_data()`를 호출하도록 작성해 주세요.
+3. **`run(self)` 메서드 (메인 루프)**:
+   - 게임은 사용자가 '종료'를 누르기 전까지 계속 실행되어야 하므로 `while True:` 무한 루프를 사용합니다.
+   - 루프 안에서 먼저 `self.view.show_menu()`를 호출해 사용자 입력을 받고 변수(예: `choice`)에 저장합니다.
+   - `if-elif-else` 조건문을 사용하여 `choice` 값에 따라 분기 처리를 합니다.
+     - `choice == "6"`: `self.manager.save_data()`로 저장한 뒤 "게임을 종료합니다" 메시지를 띄우고 `break`로 루프를 탈출합니다.
+     - `choice`가 "1", "2", "3", "4", "5" 중 하나일 때: 아직 기능을 만들지 않았으므로 일단 `print("해당 기능은 개발 중입니다.")` 라고만 출력해 둡니다.
+     - `else`: 1~6 이외의 값이 들어오면 `print("⚠️ 잘못된 입력입니다. 1~6 사이의 숫자를 입력하세요.")`라고 출력하여 예외 처리를 합니다.
+
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py)를 모두 작성하셨다면 이번 미션도 "작성 완료"로 알려주세요!
+
+### User Input
+
+@[/Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py:L11] 
+choice 변수를 먼저 선언해 둬야 하는지?
+
+*Edited relevant file*
+
+*Viewed [quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py) *
+
+### Planner Response
+
+좋은 질문입니다! 파이썬의 변수 선언 방식에 대해 짚고 넘어갈 수 있는 핵심 포인트네요.
+
+결론부터 말씀드리면, **파이썬에서는 C언어나 Java처럼 변수를 미리 선언해 둘 필요가 없습니다.** 값을 변수에 할당하는 순간(대입 연산자 `=`를 사용하는 순간) 변수가 자동으로 생성됩니다. 
+
+따라서 `choice = 0`이라고 미리 적어둘 필요 없이, `show_menu()`가 반환(return)하는 값을 바로 변수에 담아주시면 됩니다.
+
+### 🔧 코드 수정 팁 1: 변수 할당
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py)의 11~12번째 줄을 아래와 같이 **한 줄**로 깔끔하게 합칠 수 있습니다.
+
+```python
+# 수정 전
+choice = 0
+self.view.show_menu()
+
+# 수정 후
+choice = self.view.show_menu()
+```
+(앞서 `QuizView` 클래스의 `show_menu` 마지막에 `return choice`를 적어두셨죠? 그 반환된 값을 여기서 `choice`라는 변수에 쏙 담아주는 것입니다!)
+
+---
+
+### 🔧 코드 수정 팁 2: `__init__` 에서 인스턴스(객체) 생성하기
+
+지금 작성하신 `__init__` 코드를 보면 괄호 안에 매개변수로 `QuizManager, QuizView`를 받고 계십니다. 
+이 방식도 틀린 것은 아니지만, 보통 컨트롤러가 초기화될 때 내부에서 직접 객체들을 생성(instantiate)하는 방식을 많이 씁니다.
+
+그리고 중요한 건 클래스 뒤에 **소괄호 `()`**를 붙여야 비로소 "객체가 생성"된다는 점입니다. 다음과 같이 `__init__`을 수정해 보시면 어떨까요? (그리고 데이터를 불러오는 `load_data()`도 추가해 주세요!)
+
+```python
+class QuizController:
+    # 매개변수 없이 self만 남깁니다.
+    def __init__(self):
+        # 소괄호 () 를 붙여 객체를 생성하고 변수에 담습니다.
+        self.manager = QuizManager()  
+        self.view = QuizView()
+        
+        # 시작할 때 자동으로 데이터를 불러옵니다.
+        self.manager.load_data()
+```
+
+이 두 가지 팁을 참고하셔서 코드를 수정하시고, 이전에 안내해 드린 분기 처리(`if choice == "1":` 등)를 마저 작성해 보세요! 
+
+막히는 곳이 있으면 언제든 코드를 남겨주세요.
+
+### User Input
+
+@[/Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py] 완료
+
+*User accepted the command `>>> class QuizController:...     def __init__(self):...         self.manager = QuizManager()...         self.view = QuizView()...         # 데이터 로드...         self.manager.load_data()...     def run(self):...         while True:...             choice = self.view.show_menu()...             if choice == 1:...                 print("기능개발중")...             elif choice == 2:...                 print("기능개발중")...             elif choice == 3:...                 print("기능개발중")...             elif choice == 4:...                 print("기능개발중")...             elif choice == 5:...                 print("기능개발중")...             elif choice == 6:...                 self.manager.save_data()...             else: print("🐷 잘못된 입력입니다.\n🐶 1~6 까지의 숫자를 입력하세요.")... `*
+
+*Edited relevant file*
+
+*Viewed [quiz_model.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_model.py) *
+
+### Planner Response
+
+`QuizController`의 구조와 6번을 눌렀을 때의 저장 후 루프 탈출(`break`), 그리고 잘못된 입력 안내 메시지(🐷🐶)까지 완벽하게 구현하셨습니다!
+
+하지만 코드를 실행하기 전에 **파이썬의 아주 중요한 특징** 하나를 꼭 짚고 넘어가야 합니다.
+
+### 💡 파이썬 `input()` 함수의 특징 (문자열 vs 숫자)
+`quiz_view.py`에서 `choice = input("선택: ").strip()`을 통해 입력받은 값은 숫자를 입력하더라도 항상 **문자열(String)**로 취급됩니다. 
+
+즉 사용자가 `1`을 입력해도 파이썬은 문자열 `"1"`로 기억합니다.
+그런데 현재 작성하신 조건문은 `if choice == 1:` 처럼 **정수(Integer)**와 비교하고 있습니다. 파이썬에서는 `"1" == 1`이 거짓(`False`)이기 때문에, 무조건 `else`로 넘어가서 "잘못된 입력입니다"가 뜨게 됩니다.
+
+**수정 방법 (택 1):**
+1. 조건문을 문자열로 비교: `if choice == "1":`
+2. 입력을 정수로 변환: `choice = int(self.view.show_menu())` (단, 이 경우 문자를 입력하면 에러가 날 수 있어 1번 방법을 권장합니다.)
+
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py) 파일의 13~23번째 줄 조건문에 있는 숫자들을 `"1"`, `"2"` 처럼 따옴표로 감싸서 문자열로 수정해 주세요!
+
+---
+
+### 🚀 여덟 번째 미션: `main.py` 완성하고 게임 실행해보기!
+
+이제 드디어 우리가 만든 프로그램의 시동을 걸어볼 시간입니다. 프로그램의 진입점인 [main.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/main.py)를 열어주세요.
+
+**요구사항 가이드:**
+1. `QuizController`를 불러옵니다. (`from quiz_controller import QuizController`)
+2. `QuizController` 객체를 만들고, `run()` 메서드를 실행시킵니다.
+   ```python
+   if __name__ == "__main__":
+       app = QuizController()
+       app.run()
+   ```
+
+작성하신 후 터미널 창에 `python main.py`를 입력해서 게임을 직접 실행해 보세요! 메뉴가 잘 뜨는지, 6번을 누르면 종료가 잘 되는지, 다른 번호를 누르면 "기능개발중"이 뜨는지 확인해 보시고 결과를 알려주세요!
+
+### User Input
+
+잘 나옴
+
+*User accepted the command `/usr/local/bin/python3.12 /Users/4321qwaszx9029/Codyssey-E1-2/main.py`*
+
+*Edited relevant file*
+
+*Edited relevant file*
+
+*User accepted the command `/usr/local/bin/python3.12 /Users/4321qwaszx9029/Codyssey-E1-2/main.py`*
+
+*User accepted the command `/usr/local/bin/python3.12 /Users/4321qwaszx9029/Codyssey-E1-2/main.py`*
+
+*Edited relevant file*
+
+*Edited relevant file*
+
+*Viewed [main.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/main.py) *
+
+*User accepted the command `/usr/local/bin/python3.12 /Users/4321qwaszx9029/Codyssey-E1-2/main.py`*
+
+### Planner Response
+
+실행 결과가 아주 완벽하게 잘 나왔습니다! 문자열 팁도 잘 적용하셨고, `main.py` 파일도 훌륭하게 작동하네요. 👏 (참고로 `main.py`의 5~14번째 줄에 있는 예전 연습용 코드 `def main(): ...` 부분은 이제 지우셔도 무방합니다!)
+
+이제 틀이 모두 완성되었으니, 메뉴 안의 기능들을 하나씩 채워나갈 차례입니다.
+가장 먼저 우리가 기본으로 넣었던 **퀴즈 5개가 잘 저장되어 있는지 화면으로 확인**하기 위해 "3. 퀴즈 목록" 기능을 구현해 보겠습니다.
+
+---
+
+### 🚀 아홉 번째 미션: "3. 퀴즈 목록 보기" 기능 구현하기
+
+이번 미션은 두 개의 파일을 수정해야 합니다. 뷰(View)에서 보여주는 기능을 만들고, 컨트롤러(Controller)에서 연결합니다.
+
+#### 1. `QuizView` 클래스에 `show_quizzes(self, quizzes)` 메서드 추가하기
+[quiz_view.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py)를 열고 `show_menu` 아래에 새로운 메서드를 만듭니다.
+- 매개변수로 `self` 외에 퀴즈 리스트를 받을 `quizzes`를 추가합니다.
+- `enumerate()` 함수나 `for` 문을 사용해 리스트를 돌면서 퀴즈의 번호와 문제(`quiz.question`)를 예쁘게 출력해 줍니다.
+- (예시 결과: `[1] 세상에서 가장 학벌이 좋은 물고기는?`)
+
+**참고 힌트:**
+```python
+def show_quizzes(self, quizzes):
+    print("\n📋 등록된 퀴즈 목록")
+    print("-" * 40)
+    for i, quiz in enumerate(quizzes, start=1):
+        print(f"[{i}] {quiz.question}")
+    print("-" * 40)
+```
+
+#### 2. `QuizController`에서 기능 연결하기
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py)를 열고 `elif choice == "3":` 부분을 수정합니다.
+- 기존의 `"기능개발중"` 출력을 지우고, 방금 만든 뷰 메서드를 호출합니다.
+- 이때 모델이 가지고 있는 퀴즈 리스트(`self.manager.quizzes`)를 뷰에게 전달해 주어야 합니다.
+- `self.view.show_quizzes(self.manager.quizzes)` 
+
+작성을 마치고 `main.py`를 다시 실행해서 3번을 눌러보세요! 등록된 5개의 넌센스 퀴즈가 잘 출력된다면 성공입니다. 결과 알려주세요!

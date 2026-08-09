@@ -1,4 +1,4 @@
-from quiz_model import QuizModel
+from quiz_model import Quiz
 from quiz_view import QuizView
 from quiz_controller import QuizController
 
@@ -13,4 +13,5 @@ def main():
     controller.run()
 
 if __name__ == "__main__":
-    main()
+    app = QuizController()
+    app.run()

@@ -707,3 +707,141 @@ def show_quizzes(self, quizzes):
 - `self.view.show_quizzes(self.manager.quizzes)` 
 
 작성을 마치고 `main.py`를 다시 실행해서 3번을 눌러보세요! 등록된 5개의 넌센스 퀴즈가 잘 출력된다면 성공입니다. 결과 알려주세요!
+
+### User Input
+
+@[TerminalName: Python, ProcessId: 98779] 잘 된듯
+
+*User accepted the command `/usr/local/bin/python3.12 /Users/4321qwaszx9029/Codyssey-E1-2/main.py`*
+
+### Planner Response
+
+터미널 로그를 확인해 보니 처음에 매개변수를 빼먹어서 났던 에러도 스스로 멋지게 해결하셨네요! 목록이 예쁘게 잘 출력되는 걸 보니 저도 기분이 좋습니다. 🎉
+
+이제 목록을 확인했으니, **새로운 퀴즈를 직접 등록하는 "2. 퀴즈 추가" 기능**을 만들어 보겠습니다.
+
+---
+
+### 🚀 열 번째 미션: "2. 퀴즈 추가" 기능 구현하기
+
+이번에도 뷰(View)에서 입력을 받고, 컨트롤러(Controller)에서 모델(Model)로 전달해 저장하는 흐름입니다.
+
+#### 1. `QuizView` 클래스에 `get_new_quiz()` 메서드 추가하기
+[quiz_view.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py)에 퀴즈 정보를 입력받는 메서드를 만듭니다.
+- 문제 내용(`input`)을 받습니다.
+- 4개의 보기를 각각(`input`) 받아 하나의 리스트로 묶습니다.
+- 정답 번호(`input`)를 받고 정수(`int`)로 변환합니다. (에러 방어는 나중에 하더라도 일단 `int()`로 변환해 보세요.)
+- 힌트 내용(`input`)을 받습니다.
+- 입력받은 문제, 보기 리스트, 정답 번호, 힌트를 한 번에 반환(`return`)합니다. 파이썬에서는 쉼표로 변수들을 나열하면 튜플(Tuple) 형태로 한 번에 반환할 수 있습니다.
+
+**참고 힌트:**
+```python
+def get_new_quiz(self):
+    print("\n📌 새로운 퀴즈를 추가합니다.")
+    question = input("문제를 입력하세요: ").strip()
+    
+    # 보기 리스트 만들기 (빈 리스트에 하나씩 추가하거나 직접 리스트로 묶기)
+    c1 = input("선택지 1: ").strip()
+    c2 = input("선택지 2: ").strip()
+    c3 = input("선택지 3: ").strip()
+    c4 = input("선택지 4: ").strip()
+    choices = [c1, c2, c3, c4]
+    
+    answer = int(input("정답 번호 (1-4): ").strip())
+    hint = input("힌트 (없으면 엔터): ").strip()
+    
+    # 4개의 데이터를 한 번에 반환
+    return question, choices, answer, hint
+```
+
+#### 2. `QuizController`에서 입력받은 데이터로 퀴즈 추가하기
+[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py)를 열고 `elif choice == "2":` 부분을 수정합니다.
+1. `quiz_model.py`에서 `Quiz` 클래스도 가져와야 하므로 맨 윗줄 임포트를 수정합니다.
+   `from quiz_model import QuizManager, Quiz`
+2. `"2"`번을 선택했을 때 뷰에서 입력을 받아옵니다.
+   `q, c, a, h = self.view.get_new_quiz()`
+3. 이 정보들로 새로운 `Quiz` 객체를 만듭니다.
+   `new_quiz = Quiz(q, c, a, h)`
+4. 모델의 퀴즈 리스트에 방금 만든 객체를 추가합니다.
+   `self.manager.quizzes.append(new_quiz)`
+5. `print("\n✅ 퀴즈가 성공적으로 추가되었습니다!")`를 출력합니다.
+
+코드를 작성하신 뒤 2번 기능으로 퀴즈를 하나 추가해 보시고, 3번(목록)을 눌러 추가된 퀴즈가 잘 나오는지 확인해 보세요!
+
+### User Input
+
+@[/Users/4321qwaszx9029/Codyssey-E1-2/question.txt] @[/Users/4321qwaszx9029/Codyssey-E1-2/plan.md] 지금 plan중 어디 단계야?
+
+*User accepted the command `git status`*
+
+*User accepted the command `git status`*
+
+*User accepted the command `git commit -m Feat: "퀴즈보기 구현"`*
+
+*User accepted the command `git commit -m "Feat: 퀴즈보기 구현"`*
+
+*User accepted the command `git push`*
+
+*Viewed [main.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/main.py) *
+
+### Planner Response
+
+현재 [plan.md](file:///Users/4321qwaszx9029/Codyssey-E1-2/plan.md)를 기준으로 우리는 **[4단계] 필수 기능 구현**의 한가운데에 있습니다!
+
+*   **[1단계] Model 구현 및 파일 I/O**: `Quiz`, `QuizManager`, `save/load` 로직 완료 ✅
+*   **[2단계] View 입출력 틀 잡기**: 메뉴 출력, 퀴즈 목록 출력 틀 완료 ✅
+*   **[3단계] Controller 연결 및 메인 루프**: `QuizController` 메인 루프 완료 ✅
+*   **[4단계] 필수 기능 구현**:
+    *   퀴즈 목록 보기 기능 (방금 완료!) ✅
+    *   **퀴즈 추가 기능 (현재 진행할 차례!) 🏃‍♂️**
+
+방금 퀴즈 목록 보기를 깃허브에 커밋(Feat: 퀴즈보기 구현)까지 아주 잘 마무리하셨습니다. 
+
+이제 바로 직전 메시지에서 안내해 드린 **"🚀 열 번째 미션: 2. 퀴즈 추가 기능 구현하기"** (View에서 문제/보기/정답 입력받고, Controller에서 `Quiz` 객체로 만들어 리스트에 추가)를 진행하시면 4단계가 모두 끝납니다!
+
+이전 메시지의 가이드를 참고해서 `quiz_view.py`와 `quiz_controller.py`에 퀴즈 추가 기능을 작성해 보세요! 화이팅입니다! 🔥
+
+### User Input
+
+@[TerminalName: Python, ProcessId: 2406] 뭐가 문제야?
+
+### Planner Response
+
+터미널 에러 로그를 보니 원인이 아주 명확하게 보입니다!
+
+```python
+TypeError: cannot unpack non-iterable NoneType object
+```
+이 에러는 반환값(return)이 없는 함수에서 억지로 여러 개의 변수(`q, c, a, h = ...`)로 값을 쪼개어 담으려 할 때 발생합니다.
+
+원인은 **[quiz_controller.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_controller.py)의 19번째 줄**에 있습니다.
+
+### 💡 수정 가이드
+현재 2번(퀴즈 추가)을 선택했을 때, 실수로 이전에 만든 **퀴즈 목록 보기 메서드(`show_quizzes`)**를 호출하셨습니다.
+```python
+# 현재 에러가 나는 코드
+elif choice == "2":
+    q, c, a, h = self.view.show_quizzes(self.manager.quizzes)
+```
+`show_quizzes`는 화면에 출력만 하고 아무것도 반환하지 않기 때문에(None), `q, c, a, h`에 담을 수가 없어 에러가 났던 것입니다!
+
+**해결 방법:**
+이 부분을 방금 `QuizView`에 새로 만든 **퀴즈 추가용 메서드(`get_new_quiz`)**로 바꾸어 주시면 됩니다! 
+
+```python
+# 수정 후 코드
+elif choice == "2":
+    q, c, a, h = self.view.get_new_quiz()
+    
+    # 3. 새로운 Quiz 객체 만들기 (미션 가이드 참고)
+    new_quiz = Quiz(q, c, a, h)
+    
+    # 4. 리스트에 추가
+    self.manager.quizzes.append(new_quiz)
+    
+    # 5. 성공 메시지
+    print("\n✅ 퀴즈가 성공적으로 추가되었습니다!")
+```
+(혹시 [quiz_view.py](file:///Users/4321qwaszx9029/Codyssey-E1-2/quiz_view.py)에 `get_new_quiz(self)` 메서드를 아직 안 만드셨다면 이전 메시지의 힌트를 참고해서 먼저 만들어 주세요!)
+
+코드를 수정하시고 다시 터미널에서 실행해 보세요! 잘 작동할 겁니다.

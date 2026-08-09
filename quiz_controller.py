@@ -16,7 +16,7 @@ class QuizController:
             elif choice == "2":
                 print("\n기능개발중")
             elif choice == "3":
-                print("\n기능개발중")
+                self.view.show_quizzes(self.manager.quizzes)
             elif choice == "4":
                 print("\n기능개발중")
             elif choice == "5":

@@ -15,3 +15,10 @@ class QuizView:
         # 선택
         choice = input("선택: ").strip()
         return choice
+
+    def show_quizzes(self, quizzes):
+        print("\n📋 등록된 퀴즈 목록")
+        print("-" * 40)
+        for i, quiz in enumerate(quizzes, start=1):
+            print(f"[{i}] {quiz.question}")
+        print("-" * 40)

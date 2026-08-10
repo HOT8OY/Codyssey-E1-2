@@ -1,23 +1,35 @@
 # 프로젝트 개요
-[main 화면]
+
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/main.png?raw=true">
+
 - 코드 에디터의 Terminal을 사용하여 플레이 할 수 있는 쉬운 퀴즈 게임.
 
-[사진]
-- 개발 환경은 파이썬 3.12.13
-- 사용 ide는 Visual Studio Code
-- git 버전은 2.54.0
+# 개발 환경
+
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/%EA%B0%9C%EB%B0%9C%20%ED%99%98%EA%B2%BD.png?raw=true">
+
+- 파이썬 3.12.13
+- ide : Visual Studio Code
+- git 버전 2.54.0
 - 개발 요구사항에 맞춰서 외부 라이브러리를 사용하지 않고 기본 라이브러리만을 사용하였음.
 
 # 퀴즈 주제와 선정 이유
 - 누구나 가볍게 접근 가능하도록 한국의 넌센스 퀴즈를 주제로 선정.
 
 # 실행 방법
-[사진]
+
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/start.png?raw=true">
+
 - VSC에서 main.py 파일을 선택 후 실행 버튼을 클릭.
-[사진]
+
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/start%20with%20command.png?raw=true">
+
 - 또는 터미널에서 해당 프로젝트 폴더로 이동한 뒤, `python3 main.py` 명령어를 입력하여 실행.
 
 # 기능 목록
+
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/main.png?raw=true">
+
 1. **퀴즈 풀기**: 저장된 퀴즈 중 원하는 문제 수만큼 랜덤으로 출제되며 정답을 맞히면 점수를 획득합. (힌트 사용 시 점수 차감)
 2. **퀴즈 추가**: 사용자가 직접 문제, 보기, 정답, 힌트를 입력해 새로운 퀴즈를 등록.
 3. **퀴즈 목록**: 현재 등록되어 있는 모든 퀴즈의 문제 목록을 확인합니다.
@@ -40,12 +52,39 @@
 - `quizzes`: 문제(`question`), 선택지 리스트(`choices`), 정답 번호(`answer`), 힌트(`hint`)가 딕셔너리 리스트 형태로 저장.
 - `best_score`: 역대 최고 점수가 정수형(int)으로 저장.
 - `history`: 플레이 기록이 딕셔너리 리스트 형태(`date`, `played_count`, `score`)로 저장.
+### 구조 예시
+```
+{
+    "quizzes": [
+        {
+            "question": "세상에서 가장 학벌이 좋은 물고기는?",
+            "choices": [
+                "오징어",
+                "연어",
+                "고등어",
+                "송어"
+            ],
+            "answer": 3,
+            "hint": "학교 이름과 비슷합니다."
+        }
+    ],
+    "best_score": 40,
+    "history": [
+        {
+            "date": "2026-08-10 15:27:49",
+            "played_count": 5,
+            "score": 40
+        }
+    ]
+}
+```
+
 
 ---
 
 # Git 명령어 사용 기록
 
-- add, commit, push, checkout(switch)
+- **add, commit, push, checkout(switch)**
 ```
 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git status
 On branch main
@@ -96,7 +135,7 @@ To https://github.com/HOT8OY/Codyssey-E1-2
    a3e7717..f764b7c  main -> main
 ```
 
-- switch(checkout), pull(fetch + merge)
+- **switch(checkout), pull(fetch + merge)**
 ```
 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git branch -a
   04_quiz-logic-completions
@@ -139,7 +178,7 @@ Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 ```
 
-- commit 기록(git log --oneline --graph)
+- **commit 기록(git log --oneline --graph)**
 ```
 ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --graph
 * 16e61c2 (HEAD -> main, origin/main, origin/HEAD) README.md 마무리
@@ -161,3 +200,4 @@ Your branch is up to date with 'origin/main'.
 * 22e971b (origin/01_first-initialize) Feat: main.py 구성 완료
 * 3765a74 Feat: 초기 구조 생성
 ```
+<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/git%20log%20--oneline%20--graph.png?raw=true">

@@ -1,3 +1,4 @@
+import random
 from quiz_model import QuizManager, Quiz
 from quiz_view import QuizView
 
@@ -13,8 +14,16 @@ class QuizController:
             choice = self.view.show_menu()
             if choice == "1":
                 print("\n\n\n\n 💎 퀴즈 게임을 시작합니다!")
+                max_num = len(self.manager.quizzes)
+                if max_num == 0:
+                    print("⚠️ 등록된 퀴즈가 없습니다.")
+                    continue
+                # 몇 문제를 풀지 입력받기
+                num_to_play = self.view.get_num_quizzes(max_num)
+                # ramdom 함수로 리스트에서 무작위로 뽑기
+                play_list = random.sample(self.manager.quizzes, num_to_play)
                 score = 0
-                for quiz in self.manager.quizzes:
+                for quiz in play_list:
                     while True:
                         ans = self.view.play_quiz(quiz)
 

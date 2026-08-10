@@ -17,6 +17,16 @@ class QuizView:
         choice = input("선택: ").strip()
         return choice
 
+    # 풀 문제 수 입력받기
+    def get_num_quizzes(self, max_num):
+        while True:
+            num_str = input(f"몇 문제를 푸시겠습니까? (1~{max_num}): ").strip()
+            if num_str.isdigit():
+                num = int(num_str)
+                if 1 <= num <= max_num:
+                    return num # 올바를 숫자 입력시 반환하고 종료
+            print(f"⚠️ 1부터 {max_num} 사이의 숫자를 입력해주세요.")
+
     # 퀴즈 풀기
     def play_quiz(self, quiz):
         print("\n" + "="*40)

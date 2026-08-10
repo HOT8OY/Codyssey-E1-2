@@ -16,6 +16,19 @@ class QuizView:
         # 선택
         choice = input("선택: ").strip()
         return choice
+
+    # 퀴즈 풀기
+    def play_quiz(self, quiz):
+        print("\n" + "="*40)
+        print(f"❓❓ [문제] {quiz.question}")
+        print("-"*40)
+        # 보기 출력
+        for i, choice in enumerate(quiz.choices, start=1):
+            print(f"{i}. {choice}")
+        print("-"*40)
+        user_input = input("정답을 입력하세요 (힌트를 보려면 'h' 입력) : ").strip().lower()
+
+        return user_input
     
     # 퀴즈 목록 출력
     def show_quizzes(self, quizzes):
@@ -24,6 +37,7 @@ class QuizView:
         for i, quiz in enumerate(quizzes, start=1):
             print(f"[{i}] {quiz.question}")
         print("-" * 40)
+        input("계속하려면 엔터를 누르세요.")
 
     # 퀴즈 추가
     def get_new_quiz(self):

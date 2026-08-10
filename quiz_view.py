@@ -55,3 +55,20 @@ class QuizView:
 
         # 4개의 데이터를 한번에 반환
         return question, choices, answer, hint
+
+    # 최고 점수 확인
+    def show_best_score(self, best_score, history):
+        print("\n\n\n" + "="*40)
+        print(f"\n 🏆 현재 최고 점수: {best_score}점 🏆")
+        print("\n" + "="*40)
+        print("\n 📊 최근 플레이 기록:")
+
+        if not history:
+            print("  아직 플레이 기록이 없습니다.")
+        else:
+            # 리스트에 있는 점수들을 하나씩 꺼내서 보여줌
+            for i, s in enumerate(history, start = 1):
+                print(f"   {i}회차: {s}점")
+
+        print("-" * 40)
+        input("계속하려면 엔터를 누르세요.")

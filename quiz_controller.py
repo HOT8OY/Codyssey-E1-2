@@ -38,6 +38,11 @@ class QuizController:
                         else:
                             print("⚠️ 숫자 1~4 또는 'h'를 입력하세요.")
                 print(f"\n 🎉 퀴즈 종료! 당신의 최종 점수는 {score}점 입니다.")
+                self.manager.history.append(score) # 플레이 기록에 추가
+                # 최고 점수 갱신 확인
+                if score > self.manager.best_score:
+                    print("\n🏆 축하합니다! 최고 점수를 갱신했습니다!")
+                    self.manager.best_score = score
                 input("메뉴로 돌아가려면 엔터를 누르세요.")
 
 
@@ -54,8 +59,8 @@ class QuizController:
                 self.view.show_quizzes(self.manager.quizzes)
 
             elif choice == "4":
-                print("\n최고 점수 확인 기능개발중")
-                input("계속하려면 엔터를 누르세요.")
+                # 매니저(Model)이 가진 최고 점수와 기록 데이터를 View에게 넘겨줌
+                self.view.show_best_score(self.manager.best_score, self.manager.history)
 
             elif choice == "5":
                 print("\n퀴즈 삭제 기능개발중")

@@ -77,9 +77,11 @@ class QuizView:
             print("  아직 플레이 기록이 없습니다.")
         else:
             # 리스트에 있는 점수들을 하나씩 꺼내서 보여줌
-            for i, s in enumerate(history, start = 1):
-                print(f"   {i}회차: {s}점")
-
+            for i, record in enumerate(history, start = 1):
+                r_date = record.get("date")
+                r_count = record.get("played_count")
+                r_score = record.get("score")
+                print(f"   {i}회차 [{r_date}]: {r_count}문제 풀이 ➡️ {r_score}점")
         print("-" * 40)
         input("계속하려면 엔터를 누르세요.")
 

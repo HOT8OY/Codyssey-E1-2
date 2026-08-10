@@ -1,4 +1,5 @@
 import random
+import datetime
 from quiz_model import QuizManager, Quiz
 from quiz_view import QuizView
 
@@ -47,12 +48,19 @@ class QuizController:
                         else:
                             print("⚠️ 숫자 1~4 또는 'h'를 입력하세요.")
                 print(f"\n 🎉 퀴즈 종료! 당신의 최종 점수는 {score}점 입니다.")
-                self.manager.history.append(score) # 플레이 기록에 추가
+                # 점수 기록 추가
+                now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                record = {
+                    "date": now_str,
+                    "played_count": num_to_play,
+                    "score": score
+                }
+                self.manager.history.append(record)
                 # 최고 점수 갱신 확인
                 if score > self.manager.best_score:
                     print("\n🏆 축하합니다! 최고 점수를 갱신했습니다!")
                     self.manager.best_score = score
-                input("메뉴로 돌아가려면 엔터를 누르세요.")
+                input("\n메뉴로 돌아가려면 엔터를 누르세요.")
 
 
             elif choice == "2":
@@ -63,7 +71,7 @@ class QuizController:
                 self.manager.quizzes.append(new_quiz)
                 print("\n❤️ 퀴즈가 성공적으로 추가되었습니다!")
                 print(f"추가된 퀴즈 : {q}")
-                input("메뉴로 돌아가려면 엔터를 누르세요.")
+                input("\n메뉴로 돌아가려면 엔터를 누르세요.")
 
             elif choice == "3":
                 self.view.show_quizzes(self.manager.quizzes)
@@ -75,7 +83,7 @@ class QuizController:
             elif choice == "5":
                 if not self.manager.quizzes:
                     print("\n⚠️ 등록된 퀴즈가 없습니다.")
-                    input("메뉴로 돌아가려면 엔터를 누르세요.")
+                    input("\n메뉴로 돌아가려면 엔터를 누르세요.")
                     continue # 등록된 퀴즈가 없으면 메뉴로
                 
                 #get_quiz_index_to_delete로 삭제할 퀴즈의 index를 받아옴
@@ -90,13 +98,13 @@ class QuizController:
                         # 파이썬 리스트의 시작점은 0이므로 -1
                         delete_quiz = self.manager.quizzes.pop(target_idx - 1)
                         print(f"\n✅ '{delete_quiz.question}' 퀴즈가 삭제되었습니다.")
-                        input("메뉴로 돌아가려면 엔터를 누르세요.")
+                        input("\n메뉴로 돌아가려면 엔터를 누르세요.")
                     else:
                         print("\n⚠️ 목록에 없는 번호입니다.")
-                        input("메뉴로 돌아가려면 엔터를 누르세요.")
+                        input("\n메뉴로 돌아가려면 엔터를 누르세요.")
                 else:
                     print("\n⚠️ 숫자를 입력해주세요.")
-                    input("메뉴로 돌아가려면 엔터를 누르세요.")
+                    input("\n메뉴로 돌아가려면 엔터를 누르세요.")
 
             elif choice == "6":
                 print("데이터를 저장하고 종료합니다.")

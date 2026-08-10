@@ -44,12 +44,101 @@
 
 - add, commit, push, checkout(switch)
 ```
-명령어 수행 내역
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
+        Screenshot/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git add .
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   README.md
+        new file:   Screenshot/main.png
+        new file:   Screenshot/start with command.png
+        new file:   Screenshot/start.png
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git commit -m "README.md 파
+일 초안 생성"
+[main f764b7c] README.md 파일 초안 생성
+ 4 files changed, 69 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 Screenshot/main.png
+ create mode 100644 Screenshot/start with command.png
+ create mode 100644 Screenshot/start.png
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git push origin
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 169.06 KiB | 28.18 MiB/s, done.
+Total 7 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/HOT8OY/Codyssey-E1-2
+   a3e7717..f764b7c  main -> main
+```
+
+- switch(checkout), pull(fetch + merge)
+```
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git branch -a
+  04_quiz-logic-completions
+* main
+  remotes/origin/01_first-initialize
+  remotes/origin/02_quiz-model
+  remotes/origin/03_quiz-controller
+  remotes/origin/04_quiz-logic-completions
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git switch 04_quiz-logic-co
+mpletions
+Switched to branch '04_quiz-logic-completions'
+Your branch is up to date with 'origin/04_quiz-logic-completions'.
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git pull origin main
+From https://github.com/HOT8OY/Codyssey-E1-2
+ * branch            main       -> FETCH_HEAD
+Updating d277305..f764b7c
+Fast-forward
+ Codyssey-E1-2.code-workspace      |   7 ---
+ README.md                         |  69 +++++++++++++++++++++++++
+ Screenshot/main.png               | Bin 0 -> 36270 bytes
+ Screenshot/start with command.png | Bin 0 -> 30375 bytes
+ Screenshot/start.png              | Bin 0 -> 121518 bytes
+ main.py                           |  12 -----
+ 6 files changed, 69 insertions(+), 19 deletions(-)
+ delete mode 100644 Codyssey-E1-2.code-workspace
+ create mode 100644 README.md
+ create mode 100644 Screenshot/main.png
+ create mode 100644 Screenshot/start with command.png
+ create mode 100644 Screenshot/start.png
+
+
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
 ```
 
 - commit 기록
 ```
-c4321qwaszx9029@c6r10s5 Codyssey-E1-2 % git log --oneline --all
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --all
 a3e7717 (HEAD -> main, origin/main, origin/HEAD) Refactoring 사용하지 않는 코드 삭제
 d277305 (origin/04_quiz-logic-completions, 04_quiz-logic-completions) .gitignore 업데이트 및 기존 파일 추적 해제
 ca6053d Feat: 게임 기록(몇 문제 풀었는지, 언제 풀었는지) 저장 형식 변경

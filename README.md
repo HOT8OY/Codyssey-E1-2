@@ -1,8 +1,11 @@
 # 프로젝트 개요
 [main 화면]
 - 코드 에디터의 Terminal을 사용하여 플레이 할 수 있는 쉬운 퀴즈 게임.
+
+[사진]
 - 개발 환경은 파이썬 3.12.13
 - 사용 ide는 Visual Studio Code
+- git 버전은 2.54.0
 - 개발 요구사항에 맞춰서 외부 라이브러리를 사용하지 않고 기본 라이브러리만을 사용하였음.
 
 # 퀴즈 주제와 선정 이유
@@ -136,23 +139,25 @@ Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 ```
 
-- commit 기록
+- commit 기록(git log --oneline --graph)
 ```
-ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --all
-a3e7717 (HEAD -> main, origin/main, origin/HEAD) Refactoring 사용하지 않는 코드 삭제
-d277305 (origin/04_quiz-logic-completions, 04_quiz-logic-completions) .gitignore 업데이트 및 기존 파일 추적 해제
-ca6053d Feat: 게임 기록(몇 문제 풀었는지, 언제 풀었는지) 저장 형식 변경
-00c9ade Feat: 강제 종료 예외 처리
-e069163 Feat: 퀴즈 삭제 기능 구현
-245f065 Feat: 점수 확인 및 저장 기능 구현
-aba2126 Feat: 퀴즈 풀기 기능 구현
-ccc80af Feat: 퀴즈 추가 기능 구현
-33dc685 Feat: 퀴즈보기 구현
-c3a8870 (origin/03_quiz-controller) Feat: 기본 뼈대 완성 + .gitignore 업데이트
-bfd69f9 Feat: 메인 view 구성
-321d6a7 (origin/02_quiz-model) Feat: 기본 퀴즈 추가 및 퀴즈 로드,세이브 로직 구현
-d1c94c8 Feat: quiz_mode에 리스트 변환, json 저장 기능 구현
-87d9fb7 -: save
-22e971b (origin/01_first-initialize) Feat: main.py 구성 완료
-3765a74 Feat: 초기 구조 생성
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --graph
+* 16e61c2 (HEAD -> main, origin/main, origin/HEAD) README.md 마무리
+* f764b7c (04_quiz-logic-completions) README.md 파일 초안 생성
+* a3e7717 Refactoring 사용하지 않는 코드 삭제
+* d277305 (origin/04_quiz-logic-completions) .gitignore 업데이트 및 기존 파일 추적 해제
+* ca6053d Feat: 게임 기록(몇 문제 풀었는지, 언제 풀었는지) 저장 형식 변경
+* 00c9ade Feat: 강제 종료 예외 처리
+* e069163 Feat: 퀴즈 삭제 기능 구현
+* 245f065 Feat: 점수 확인 및 저장 기능 구현
+* aba2126 Feat: 퀴즈 풀기 기능 구현
+* ccc80af Feat: 퀴즈 추가 기능 구현
+* 33dc685 Feat: 퀴즈보기 구현
+* c3a8870 (origin/03_quiz-controller) Feat: 기본 뼈대 완성 + .gitignore 업데이트
+* bfd69f9 Feat: 메인 view 구성
+* 321d6a7 (origin/02_quiz-model) Feat: 기본 퀴즈 추가 및 퀴즈 로드,세이브 로직 구현
+* d1c94c8 Feat: quiz_mode에 리스트 변환, json 저장 기능 구현
+* 87d9fb7 -: save
+* 22e971b (origin/01_first-initialize) Feat: main.py 구성 완료
+* 3765a74 Feat: 초기 구조 생성
 ```

@@ -72,3 +72,14 @@ class QuizView:
 
         print("-" * 40)
         input("계속하려면 엔터를 누르세요.")
+
+    # 퀴즈 삭제
+    def get_quiz_index_to_delete(self, quizzes):
+        print("\n\n\n 🚮 삭제할 퀴즈를 선택하세요.")
+        print("-" * 40)
+        for i, quiz in enumerate(quizzes, start=1):
+            print(f"[{i}] {quiz.question}")
+        print("-" * 40)
+        #삭제할 번호 입력받기 (0을 입력하면 취소)
+        target = input("삭제할 퀴즈 번호를 입력하세요 (취소하려면 0 입력): ").strip()
+        return target

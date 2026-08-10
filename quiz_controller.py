@@ -54,6 +54,7 @@ class QuizController:
                 self.manager.quizzes.append(new_quiz)
                 print("\n❤️ 퀴즈가 성공적으로 추가되었습니다!")
                 print(f"추가된 퀴즈 : {q}")
+                input("메뉴로 돌아가려면 엔터를 누르세요.")
 
             elif choice == "3":
                 self.view.show_quizzes(self.manager.quizzes)
@@ -63,8 +64,30 @@ class QuizController:
                 self.view.show_best_score(self.manager.best_score, self.manager.history)
 
             elif choice == "5":
-                print("\n퀴즈 삭제 기능개발중")
-                input("계속하려면 엔터를 누르세요.")
+                if not self.manager.quizzes:
+                    print("\n⚠️ 등록된 퀴즈가 없습니다.")
+                    input("메뉴로 돌아가려면 엔터를 누르세요.")
+                    continue # 등록된 퀴즈가 없으면 메뉴로
+                
+                #get_quiz_index_to_delete로 삭제할 퀴즈의 index를 받아옴
+                target_str = self.view.get_quiz_index_to_delete(self.manager.quizzes)
+
+                if target_str == "0":
+                    print("\n 🤚🏻 삭제를 취소합니다.")
+                elif target_str.isdigit():
+                    target_idx = int(target_str)
+                    # 입력한 번호가 1번부터 전체 퀴즈 개수 사이에 있는지 확인
+                    if 1 <= target_idx <= len(self.manager.quizzes):
+                        # 파이썬 리스트의 시작점은 0이므로 -1
+                        delete_quiz = self.manager.quizzes.pop(target_idx - 1)
+                        print(f"\n✅ '{delete_quiz.question}' 퀴즈가 삭제되었습니다.")
+                        input("메뉴로 돌아가려면 엔터를 누르세요.")
+                    else:
+                        print("\n⚠️ 목록에 없는 번호입니다.")
+                        input("메뉴로 돌아가려면 엔터를 누르세요.")
+                else:
+                    print("\n⚠️ 숫자를 입력해주세요.")
+                    input("메뉴로 돌아가려면 엔터를 누르세요.")
 
             elif choice == "6":
                 print("데이터를 저장하고 종료합니다.")

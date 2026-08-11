@@ -59,8 +59,16 @@ class QuizView:
         c3 = input("선택지 3: ").strip()
         c4 = input("선택지 4: ").strip()
         choices = [c1, c2, c3, c4]
+        while True:
+            try:
+                answer = int(input("정답 번호 (1~4): ").strip())
+                if answer in range(1,5):
+                    break
+                else:
+                    print("숫자 1~4만 입력해 주세요.")
+            except ValueError:
+                print("숫자 1~4만 입력해 주세요.")
 
-        answer = int(input("정답 번호 (1~4): ").strip())
         hint = input("힌트 (없으면 엔터): ").strip()
 
         # 4개의 데이터를 한번에 반환

@@ -208,8 +208,9 @@ Your branch is up to date with 'origin/main'.
 
 - **commit 기록(git log --oneline --graph)**
 ```
-ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --graph      
-* 6176d08 (HEAD -> main, origin/main, origin/HEAD) Refactor: 퀴즈 추가시 번호 입력 예외 처리
+ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ % git log --oneline --graph 
+* ed02c84 (HEAD -> main, origin/main, origin/HEAD) Docs: README 설명(아키텍쳐 설명, 저장 방식, 브랜치 전략 등) 업데이트
+* 6176d08 Refactor: 퀴즈 추가시 번호 입력 예외 처리
 * c7402a7 Docs: README.md 사진 및 설명 추가
 * 7a07939 Docs: README.md 개발환경 내용 보강
 * 16e61c2 README.md 마무리
@@ -231,4 +232,5 @@ Your branch is up to date with 'origin/main'.
 * 22e971b (origin/01_first-initialize) Feat: main.py 구성 완료
 * 3765a74 Feat: 초기 구조 생성
 ```
-<img src="https://github.com/HOT8OY/Codyssey-E1-2/blob/main/Screenshot/git%20log%20--oneline%20--graph.png?raw=true">
+
+<img width="1026" height="393" alt="스크린샷 2026-08-11 오후 4 34 25" src="https://github.com/user-attachments/assets/f1fbd89e-7a26-41c3-ad52-1e65392139c9" />

@@ -20,7 +20,7 @@ class QuizView:
     # 풀 문제 수 입력받기
     def get_num_quizzes(self, max_num):
         while True:
-            num_str = input(f"몇 문제를 푸시겠습니까? (1~{max_num}): ").strip()
+            num_str = input(f"\n몇 문제를 푸시겠습니까? (1~{max_num}): ").strip()
             if num_str.isdigit():
                 num = int(num_str)
                 if 1 <= num <= max_num:

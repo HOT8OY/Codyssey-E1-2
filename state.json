@@ -67,6 +67,21 @@
             "date": "2026-08-10 15:27:49",
             "played_count": 5,
             "score": 40
+        },
+        {
+            "date": "2026-08-13 13:32:01",
+            "played_count": 5,
+            "score": 0
+        },
+        {
+            "date": "2026-08-13 13:42:29",
+            "played_count": 5,
+            "score": -10
+        },
+        {
+            "date": "2026-08-13 13:57:36",
+            "played_count": 4,
+            "score": 10
         }
     ]
 }

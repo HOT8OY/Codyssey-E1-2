@@ -14,7 +14,8 @@ class QuizController:
         while True:
             choice = self.view.show_menu()
             if choice == "1":
-                print("\n\n\n\n 💎 퀴즈 게임을 시작합니다!")
+                print("\n\n\n"+"="*40)
+                print("\n 💎 퀴즈 게임을 시작합니다!")
                 max_num = len(self.manager.quizzes)
                 if max_num == 0:
                     print("⚠️ 등록된 퀴즈가 없습니다.")
@@ -25,28 +26,41 @@ class QuizController:
                 play_list = random.sample(self.manager.quizzes, num_to_play)
                 score = 0
                 for quiz in play_list:
+                    is_hint_used = False
                     while True:
                         ans = self.view.play_quiz(quiz)
-
                         if ans == 'h':
                             # 힌트가 있다면
-                            if quiz.hint:
+                            if quiz.hint and is_hint_used == False:
                                 print(f"\n💡 힌트: {quiz.hint}")
                                 score -= 10
-                                print("    (점수가 10점 차감되었습니다.)")
+                                is_hint_used = True
+                                print("\n (점수가 10점 차감되었습니다.)")
+                                input("\n 확인하셨으면 엔터를 누르세요.")
+                            elif is_hint_used == True:
+                                print(f"\n💡 힌트를 이미 사용했습니다. 점수 차감은 없습니다.")
+                                input("\n 확인하셨으면 엔터를 누르세요.")
                             else :
-                                print(f"💡 이 퀴즈에는 힌트가 없습니다.")
+                                print(f"\n 💡 이 퀴즈에는 힌트가 없습니다.")
+                                input("\n 확인하셨으면 엔터를 누르세요.")
                         elif ans.isdigit():
                             answer_num = int(ans)
-                            if answer_num == quiz.answer:
+                            if answer_num == quiz.answer and answer_num in range(1, len(quiz.choices) + 1):
                                 print("\n ✅ 정답입니다! (+20점)")
                                 score += 20
                                 print(f"  현재 점수 {score}점")
-                            else:
+                                input("\n 엔터를 누르면 다음 문제로 갑니다.")
+                                break # 문제 풀었으면 다음 문제로
+                            elif answer_num in range(1, len(quiz.choices) + 1):
                                 print(f"\n\n ❌ 틀렸습니다. 정답은 {quiz.answer}번 이엇습니다.")
-                            break # 문제 풀었으면 다음 문제로
+                                input("\n 엔터를 누르면 다음 문제로 갑니다.")
+                                break # 문제 풀었으면 다음 문제로
+                            else:
+                                print("\n ⚠️ 숫자 1~4 또는 'h'를 입력하세요.")
+                                input("\n 확인하셨으면 엔터를 누르세요.")
                         else:
-                            print("⚠️ 숫자 1~4 또는 'h'를 입력하세요.")
+                            print("\n ⚠️ 숫자 1~4 또는 'h'를 입력하세요.")
+                            input("\n 확인하셨으면 엔터를 누르세요.")
                 print(f"\n 🎉 퀴즈 종료! 당신의 최종 점수는 {score}점 입니다.")
                 # 점수 기록 추가
                 now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -111,4 +125,6 @@ class QuizController:
                 self.manager.save_data()
                 break 
             
-            else: print("🐷 잘못된 입력입니다.\n🐶 1~6 까지의 숫자를 입력하세요.")
+            else:
+                print("\n🐷 잘못된 입력입니다.\n\n🐶 1~6 까지의 숫자를 입력하세요.")
+                input("\n메뉴로 돌아가려면 엔터를 누르세요.")
